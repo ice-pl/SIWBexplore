@@ -1,0 +1,91 @@
+---
+title: "Intro"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Przykładowy dokument - R i Markdown
+Markdown jest jężykiem znaczników umożliwiającym podstawowe formatowanie dokumentów. W połączeniu z R mozna robić równocześnie obliczenia i analizy.
+
+## Analiza danych
+Przykładowym zbiorem by pokazać jak tu pracować jest zbiór "Iris".
+
+### Pozyskanie danych
+Pozyskanie danych bywa jednym z najtrudniejszych etapów. Dane częśto trzeba zebrać, oczyścić i scalić.
+Tu, na początek skorzystamy ze zbioru dostepnego w R - znany Iris.
+do wczytania danych z pliku csv służy komenda read.csv(parametry).
+
+Do **odwołania się** do kolumny służy składnia *nazwa_zbioru$nazwa_kolumny*.
+Przypisanie to symbol *<-*
+
+
+### "Zapoznanie się"" ze zbiorem
+Zaczynamy od zapoznanie sie z danymi i zrozumienia co w nich jest.
+Najpierw warto wiedzieć jak "wyglądają" dane, więc generujemy statystyke podsumowującą:
+```{r iris summary}
+summary(iris)
+```
+
+I dalej - również opisową.
+```{iris desr}
+
+```
+
+To nam nie mówi jak rozkładają się poszczególne parametry, więc przydałyby się histogramy.
+
+``` {r hist1}
+hist(iris$Sepal.Length,breaks=20,main = "To jest tytuł", xlab = "Długość jednego z płatków", col = "aquamarine")
+```
+
+
+``` {r hist2}
+hist(iris$Sepal.Width)
+```
+
+``` {r hist3}
+hist(iris$Petal.Length)
+```
+
+
+``` {r hist4}
+hist(iris$Petal.Width)
+```
+
+
+## Inne wykresy
+
+Histogramy już były, co jeszcze? Na przykład zwykły wykres xy
+
+```{r petal.length, echo=FALSE}
+plot(iris$Petal.Length)
+
+```{r petal.w, echo=FALSE}
+plot(iris$Petal.Width)
+```
+
+```{r s.w, echo=FALSE}
+plot(iris$Sepal.Width)
+```
+
+
+```{r s.l, echo=FALSE}
+plot(iris$Sepal.Length, col = iris$Species, main = "Tytuł", xlab = "id pomiaru", ylab = "długość", pch=16)
+```
+
+Parametr `echo = FALSE` powoduje ukrycie kodu w dokumencie wynikowym.
+
+### Pytania 
+
+A w jakich zakresach zmieniaja się poszczególne parametry? Który z gatunków ma najdłuższe płatki?
+W tym może nam pomóc wykres typu ramka-wąsy.
+
+```{r boxplot, echo=TRUE}
+kolory <-c("red", "blue","yellow","bisque", "green")
+
+boxplot(iris, col=kolory)
+```
+
+
